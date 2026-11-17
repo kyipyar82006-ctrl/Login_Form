@@ -1,20 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf=8">
-        <title>Heading and Paragraph</title>
+        <meta charset="utf-8">
+        <title>Log in Form</title>
+        <style>
+            .text{
+        border-radius: 5px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .btn{
+        height: 35px;
+        border-radius: 5px;
+    }
+
+    form{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .sel{
+        width: 180px;
+        height: 30px;
+    }
+
+    div#center{
+        width: 40%;
+        margin: auto;
+    }
+        </style>
     </head>
-<body>
-    <h1>Hello, Git and GitHub!</h1>
-    <h1>Introduction to Internet and Web</h1>
-    <h2>Internet</h2>
-    <p>The internet is the worldwide collection of computer network that links millions of computers.</p>
-    <h2>Network</h2>
-    <p>Network is a group of two or more computers connecting together to share resources and information.</p>
-    <h2>World Wide Web</h2>
-    <p>The World Wide Web, also called the Web, is the part of Internet that supports multimedia and consists of a 
-        collection of linked documents.
-    </p>
-    
+    <body>
+        
+<script>
+function showLogin()
+{
+    document.getElementById("frm").innerHTML =
+    "<table>" +
+
+    "<tr><td>Name:</td>" +
+    "<td><input type='text' id='name' class='text'><br></td></tr>" +
+
+    "<tr><td>Email:</td>" +
+    "<td><input type='email' id='email' class='text'><br></td></tr>" +
+
+    "<tr><td><label>Gender:</label></td>" +
+    "<td>" +
+    "<input type='radio' name='gender' value='Male' id='male'> Male " +
+    "<input type='radio' name='gender' value='Female' id='female'> Female" +
+    "</td></tr>" +
+
+    "<tr><td>Town:</td>" +
+    "<td><select class='sel' id='town'>" +
+    "<option value='Yangon'>Yangon</option>" +
+    "<option value='Mandalay' selected>Mandalay</option>" +
+    "<option value='Taunggyi'>Taunggyi</option>" +
+    "</select><br></td></tr>" +
+
+    "<tr><td>Major:</td>" +
+    "<td><select class='sel' id='major'>" +
+    "<option value='ECE'>ECE</option>" +
+    "<option value='CSE' selected>CSE</option>" +
+    "</select><br></td></tr>" +
+
+    "<tr><td>" +
+    "<input type='button' value='User Display' " +
+    "onclick='login()' class='btn'>" +
+
+    "&nbsp;&nbsp;&nbsp;" +
+
+    "<input type='reset' value='Clear' class='btn'>" +
+    "</td></tr>" +
+
+    "</table>";
+}
+
+
+function login()
+{
+    // Get Name
+    var name =
+    document.getElementById("name").value;
+
+    // Get Email
+    var email =
+    document.getElementById("email").value;
+
+
+    // Get Gender
+    var gen;
+
+    if(document.getElementById("male").checked)
+    {
+        gen = document.getElementById("male").value;
+    }
+    else if(document.getElementById("female").checked)
+    {
+        gen = document.getElementById("female").value;
+    }
+
+
+    // Get Town
+    var town =
+    document.getElementById("town").value;
+
+
+    // Get Major
+    var mj =
+    document.getElementById("major").value;
+
+    document.getElementById("result").innerHTML =
+        "<br>Name : " + name +
+        "<br>Email : " + email +
+        "<br>Gender : " + gen +
+        "<br>Town : " + town +
+        "<br>Major : " + mj;
+}
+
+</script>
+<div id="center">
+
+    <form>
+
+        <table cellspacing="20px">
+
+            <tr>
+                <td>
+                    <input type="button"
+                    value="Log In"
+                    class="btn"
+                    onclick="showLogin()">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div id="frm"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div id="result"></div>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</div>
 </body>
 </html>
