@@ -1,155 +1,346 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Log in Form</title>
-        <style>
-            .text{
-        border-radius: 5px;
-        height: 40px;
-        font-size: 15px;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Login Form</title>
 
-    .btn{
-        height: 35px;
-        border-radius: 5px;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    form{
-        font-size: 18px;
-        font-weight: bold;
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #FCEFF1;
+            font-family: 'Segoe UI', sans-serif;
+            color: #65464D;
+        }
 
-    .sel{
-        width: 180px;
-        height: 30px;
-    }
+        /* Main Card */
+        #center {
+            width: 420px;
+            max-width: 90%;
+            background: #FFFDFD;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(180, 105, 125, 0.12);
+        }
 
-    div#center{
-        width: 40%;
-        margin: auto;
-    }
-        </style>
-    </head>
-    <body>
-        
-<script>
-function showLogin()
-{
-    document.getElementById("frm").innerHTML =
-    "<table>" +
+        h2 {
+            text-align: center;
+            color: #B76E79;
+            margin-bottom: 8px;
+            font-size: 27px;
+        }
 
-    "<tr><td>Name:</td>" +
-    "<td><input type='text' id='name' class='text'><br></td></tr>" +
+        .subtitle {
+            text-align: center;
+            color: #B99BA1;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
 
-    "<tr><td>Email:</td>" +
-    "<td><input type='email' id='email' class='text'><br></td></tr>" +
+        form {
+            font-size: 15px;
+            font-weight: 500;
+        }
 
-    "<tr><td><label>Gender:</label></td>" +
-    "<td>" +
-    "<input type='radio' name='gender' value='Male' id='male'> Male " +
-    "<input type='radio' name='gender' value='Female' id='female'> Female" +
-    "</td></tr>" +
+        table {
+            width: 100%;
+            border-spacing: 0 15px;
+        }
 
-    "<tr><td>Town:</td>" +
-    "<td><select class='sel' id='town'>" +
-    "<option value='Yangon'>Yangon</option>" +
-    "<option value='Mandalay' selected>Mandalay</option>" +
-    "<option value='Taunggyi'>Taunggyi</option>" +
-    "</select><br></td></tr>" +
+        td {
+            padding: 5px;
+        }
 
-    "<tr><td>Major:</td>" +
-    "<td><select class='sel' id='major'>" +
-    "<option value='ECE'>ECE</option>" +
-    "<option value='CSE' selected>CSE</option>" +
-    "</select><br></td></tr>" +
+        /* Input Fields */
+        .text, .sel {
+            width: 100%;
+            height: 42px;
+            padding: 0 12px;
+            border: 1px solid #EAD2D7;
+            border-radius: 8px;
+            outline: none;
+            background: #FFFAFB;
+            color: #65464D;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-    "<tr><td>" +
-    "<input type='button' value='User Display' " +
-    "onclick='login()' class='btn'>" +
+        .text:focus, .sel:focus {
+            border-color: #D99BA7;
+            box-shadow: 0 0 0 3px rgba(217, 155, 167, 0.15);
+        }
 
-    "&nbsp;&nbsp;&nbsp;" +
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
 
-    "<input type='reset' value='Clear' class='btn'>" +
-    "</td></tr>" +
+        /* Radio Buttons */
+        input[type="radio"] {
+            accent-color: #C77D8B;
+            cursor: pointer;
+        }
 
-    "</table>";
-}
+        /* Buttons */
+        .btn {
+            height: 40px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
 
+        .primary {
+            background: #C77D8B;
+            color: white;
+        }
 
-function login()
-{
-    // Get Name
-    var name =
-    document.getElementById("name").value;
+        .primary:hover {
+            background: #AE6473;
+            transform: translateY(-2px);
+        }
 
-    // Get Email
-    var email =
-    document.getElementById("email").value;
+        .secondary {
+            background: #F7E4E8;
+            color: #A45F6C;
+        }
 
+        .secondary:hover {
+            background: #EFD1D8;
+        }
 
-    // Get Gender
-    var gen;
+        .login-btn {
+            width: 100%;
+            height: 45px;
+            background: #C77D8B;
+            color: white;
+            font-size: 15px;
+        }
 
-    if(document.getElementById("male").checked)
-    {
-        gen = document.getElementById("male").value;
-    }
-    else if(document.getElementById("female").checked)
-    {
-        gen = document.getElementById("female").value;
-    }
+        .login-btn:hover {
+            background: #AE6473;
+        }
 
+        /* Result Section */
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #FFF3F5;
+            border-radius: 10px;
+            color: #87535E;
+            font-size: 14px;
+            line-height: 2;
+            white-space: pre-line;
+        }
 
-    // Get Town
-    var town =
-    document.getElementById("town").value;
+        #result:empty {
+            display: none;
+        }
 
+        .result-title {
+            font-weight: bold;
+            color: #B76E79;
+        }
 
-    // Get Major
-    var mj =
-    document.getElementById("major").value;
+        .button-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-    document.getElementById("result").innerHTML =
-        "<br>Name : " + name +
-        "<br>Email : " + email +
-        "<br>Gender : " + gen +
-        "<br>Town : " + town +
-        "<br>Major : " + mj;
-}
+        .button-area .btn {
+            flex: 1;
+        }
 
-</script>
+    </style>
+</head>
+
+<body>
+
 <div id="center">
 
-    <form>
+    <h2>Welcome Back ♡</h2>
+    <p class="subtitle">Please enter your information</p>
 
-        <table cellspacing="20px">
+    <form id="mainForm">
+
+        <button type="button"
+                class="btn login-btn"
+                onclick="showLogin()">
+            Log In
+        </button>
+
+        <div id="frm"></div>
+
+        <div id="result"></div>
+
+    </form>
+
+</div>
+
+<script>
+
+// Show Login Form
+function showLogin() {
+
+    document.getElementById("result").innerHTML = "";
+
+    document.getElementById("frm").innerHTML = `
+
+        <table>
 
             <tr>
                 <td>
-                    <input type="button"
-                    value="Log In"
-                    class="btn"
-                    onclick="showLogin()">
+                    <label>Name</label>
+                    <input type="text"
+                           id="name"
+                           class="text"
+                           placeholder="Enter your name">
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <div id="frm"></div>
+                    <label>Email</label>
+                    <input type="email"
+                           id="email"
+                           class="text"
+                           placeholder="Enter your email">
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <div id="result"></div>
+                    <label>Gender</label><br>
+
+                    <input type="radio"
+                           name="gender"
+                           value="Male"
+                           id="male">
+                    Male
+
+                    &nbsp;&nbsp;
+
+                    <input type="radio"
+                           name="gender"
+                           value="Female"
+                           id="female">
+                    Female
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Town</label>
+
+                    <select class="sel" id="town">
+                        <option value="Yangon">Yangon</option>
+                        <option value="Mandalay" selected>Mandalay</option>
+                        <option value="Taunggyi">Taunggyi</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Major</label>
+
+                    <select class="sel" id="major">
+                        <option value="ECE">ECE</option>
+                        <option value="CSE" selected>CSE</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="button-area">
+
+                        <input type="button"
+                               value="User Display"
+                               onclick="login()"
+                               class="btn primary">
+
+                        <input type="reset"
+                               value="Clear"
+                               class="btn secondary">
+
+                    </div>
                 </td>
             </tr>
 
         </table>
 
-    </form>
+    `;
+}
 
-</div>
+// Get User Information
+function login() {
+
+    // Get Name
+    var name = document.getElementById("name").value.trim();
+
+    // Get Email
+    var email = document.getElementById("email").value.trim();
+
+    // Get Gender
+    var gen;
+
+    if (document.getElementById("male").checked) {
+        gen = document.getElementById("male").value;
+    }
+    else if (document.getElementById("female").checked) {
+        gen = document.getElementById("female").value;
+    }
+
+    // Get Town
+    var town = document.getElementById("town").value;
+
+    // Get Major
+    var mj = document.getElementById("major").value;
+
+    // Validation
+    if (name === "" || email === "") {
+        alert("Please enter your name and email!");
+        return;
+    }
+
+    if (!gen) {
+        alert("Please select your gender!");
+        return;
+    }
+
+    // Display Result
+    document.getElementById("result").textContent =
+        "User Information\n\n" +
+        "Name : " + name + "\n" +
+        "Email : " + email + "\n" +
+        "Gender : " + gen + "\n" +
+        "Town : " + town + "\n" +
+        "Major : " + mj;
+
+}
+
+// Clear Result when Reset
+document.getElementById("mainForm").addEventListener("reset", function() {
+
+    document.getElementById("result").textContent = "";
+
+});
+
+</script>
+
 </body>
 </html>
